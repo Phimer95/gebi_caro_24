@@ -77,11 +77,11 @@ export default function Home() {
           <SwiperSlide key={gift.id}>
             <div className="relative h-screen w-screen text-slate-800 bg-cover bg-center ">
               <section className="z-50 max-w-xl w-full absolute shadow-lg right-10 bottom-10 text-justify bg-white/90 p-5 rounded-3xl shadow-slate-500 border border-slate-900">
-                <h1 className="text-3xl font-bold z-50 mb-4">{gift.title}</h1>
-                <p className="text-lg z-50 font-semibold">{gift.text}</p>
+                <h1 className="text-xl font-bold z-50 mb-4">{gift.title}</h1>
+                <p className="text-base z-50 font-semibold">{gift.text}</p>
                 <p className="flex mt-4">
                   <Calendar />
-                  <span className=" ml-3 text-lg z-50 font-semibold">
+                  <span className="ml-3 text-base z-50 font-semibold">
                     {gift.date}
                   </span>
                 </p>
