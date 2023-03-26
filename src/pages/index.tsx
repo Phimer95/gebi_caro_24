@@ -1,6 +1,19 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  EffectCube,
+  EffectFlip,
+  EffectCoverflow,
+  EffectCards,
+  EffectFade,
+} from "swiper";
 import "swiper/css";
+import "swiper/css/effect-cube";
+import "swiper/css/effect-flip";
+import "swiper/css/effect-coverflow";
+import "swiper/css/effect-cards";
+import "swiper/css/effect-fade";
 import Image from "next/image";
+
 const gifts = [
   {
     id: 1,
@@ -46,42 +59,50 @@ const gifts = [
 
 export default function Home() {
   return (
-    <Swiper
-      className="h-screen"
-      slidesPerView={1}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
-    >
-      {gifts.map((gift) => (
-        <SwiperSlide key={gift.id}>
-          <div className="relative h-screen w-screen text-white">
-            <section className="z-50 max-w-3xl w-full absolute left-3/4 top-3/4 -translate-x-1/2 -translate-y-1/2 text-justify bg-slate-800/50 p-5 rounded-3xl shadow-md">
-              <h1 className="text-4xl font-bold z-50 mb-6">{gift.title}</h1>
-              <p className="text-lg z-50 font-semibold">{gift.text}</p>
-              <p className="flex mt-4">
-                <Calendar />
-                <span className=" ml-3 text-lg z-50 font-semibold">
-                  {gift.date}
-                </span>
-              </p>
-            </section>
-
-            <Image
-              alt=""
-              fill
-              style={{
-                position: "absolute",
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "center",
-              }}
-              src={gift.image}
-            />
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div className="bg-slate-800">
+      <Swiper
+        modules={[
+          EffectFlip,
+          EffectCards,
+          EffectCoverflow,
+          EffectFade,
+          EffectCube,
+        ]}
+        effect="coverflow"
+        slidesPerView={1}
+        onSlideChange={() => console.log("slide change")}
+        onSwiper={(swiper) => console.log(swiper)}
+      >
+        {gifts.map((gift) => (
+          <SwiperSlide key={gift.id}>
+            <div className="relative h-screen w-screen text-slate-800 bg-cover bg-center ">
+              <section className="z-50 max-w-xl w-full absolute shadow-lg right-10 bottom-10 text-justify bg-white/90 p-5 rounded-3xl shadow-slate-500 border border-slate-900">
+                <h1 className="text-3xl font-bold z-50 mb-4">{gift.title}</h1>
+                <p className="text-lg z-50 font-semibold">{gift.text}</p>
+                <p className="flex mt-4">
+                  <Calendar />
+                  <span className=" ml-3 text-lg z-50 font-semibold">
+                    {gift.date}
+                  </span>
+                </p>
+              </section>
+              <Image
+                alt=""
+                fill
+                style={{
+                  position: "absolute",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center",
+                }}
+                src={gift.image}
+                className="moving-image"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   );
 }
 
